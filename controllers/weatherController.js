@@ -1,6 +1,6 @@
 const weatherService = require('../services/weatherService');
 
-const getWeather = async(req, res) => {
+const setWeather = async(req, res) => {
     try{
         const city = req.query.city || 'New York';
         const weatherData = await weatherService.fetchWeather(city);
@@ -10,6 +10,7 @@ const getWeather = async(req, res) => {
     }
 };
 
+
 module.exports={
-    getWeather
+    setWeather
 }
