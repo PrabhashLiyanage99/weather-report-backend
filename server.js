@@ -12,7 +12,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.use("/api/users",userRoutes);
-//app.use('/api/weather',weatherRoutes);
+app.use('/api/weather',weatherRoutes);
 
 const PORT = process.env.PORT || 5000;
 
