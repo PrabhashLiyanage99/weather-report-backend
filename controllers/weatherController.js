@@ -23,6 +23,7 @@ const getWeather = async(req, res) => {
             weather:entry.weather
         }));
         res.json({
+            location: user.location,
             date: requestedDate.toISOString().split('T')[0],
             records:formattedWeather
         });

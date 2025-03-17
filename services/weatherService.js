@@ -19,12 +19,7 @@ const weatherUpdate = async ()=> {
     for (const user of users) {
         const {location} = user;
         try {
-            const {data} = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${API_KEY}&units=metric`);
-            const weatherEntry = {
-                date: new Date(),
-                temperature: data.main.temp,
-                weather: data.weather[0].description
-            };
+            const weatherEntry = await fetchWeather(location);
             user.weatherData.push(weatherEntry);
             await user.save();
         }catch (err) {
@@ -33,7 +28,7 @@ const weatherUpdate = async ()=> {
     }
 };
 
-setInterval(weatherUpdate, 3*60*60*1000);
+setInterval(weatherUpdate, 60*60*1000);
 
 module.exports={
     fetchWeather

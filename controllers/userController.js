@@ -18,7 +18,22 @@ const registerUser = async(req, res) => {
     }
 };
 
+const updateLocation = async (req, res) => {
+    const{email, location } =req.body;
+    
+    try{
+        const weatherEntry = await weatherService.fetchWeather(location);
+        const user = await User.findOneAndUpdate({email}, {location,weatherData:[weatherEntry]},{new:true});
+        if(!user){
+            return res.status(404).json({message: "user not found"});
+        }
+        res.status(201).json({message: 'updated successfully'});
+    }catch(err){
+        res.status(500).json({error:err.message});  
+    }
+};
 
 module.exports ={
     registerUser,
+    updateLocation
 }
