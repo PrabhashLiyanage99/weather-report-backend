@@ -10,10 +10,20 @@ const UserSchema = new mongoose.Schema({
         required: true,
          unique: true
     },
-    password:{
+    location: {
         type: String,
-         required: true
+        required: true
     },
+    weatherData:[
+        {
+        date:{
+            type:Date,
+            required:true
+        },
+        temperature: Number,
+        weather: String
+        }
+    ]
 });
 
 module.exports = mongoose.model('User', UserSchema);
